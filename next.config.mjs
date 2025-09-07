@@ -10,8 +10,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath: '/', // For user pages like YOUR_USERNAME.github.io
-  assetPrefix: '/', // For user pages like YOUR_USERNAME.github.io
+  basePath: '',
 }
 
 export default nextConfig
