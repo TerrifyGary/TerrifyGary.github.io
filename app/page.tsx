@@ -53,6 +53,7 @@ export default function Portfolio() {
                 />
                 <div>
                   <h1 className="text-5xl font-bold text-white mb-4 text-balance">Kuan Wei Chen</h1>
+                  <p className="text-xl text-gray-200 mb-8 text-pretty">Gary Takashi</p>
                   <p className="text-xl text-gray-200 mb-8 text-pretty">Full-Stack Developer & AI/ML Engineer</p>
                 </div>
               </div>
