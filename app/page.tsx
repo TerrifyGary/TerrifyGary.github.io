@@ -1,11 +1,24 @@
+"use client"
+
+import { useState } from "react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Mail, Phone, Linkedin, Github, ExternalLink, Calendar, Award } from "lucide-react"
-
+import { Mail, Phone, Linkedin, Github, ExternalLink, Calendar, Award } from "lucide-react";
+import ParticlesContainer from "@/components/particles";
 export default function Portfolio() {
+  const [showDetails, setShowDetails] = useState<{ [key: string]: boolean }>({});
+
+  const toggleDetails = (projectId: string) => {
+    setShowDetails(prevDetails => ({
+      ...prevDetails,
+      [projectId]: !prevDetails[projectId]
+    }));
+  };
+
   return (
-    <div className="min-h-screen bg-black">
+    <div className="relative min-h-screen bg-gradient-to-br from-gray-900 to-black">
+      <ParticlesContainer />
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 glass-nav p-4">
         <div className="max-w-6xl mx-auto flex justify-between items-center">
@@ -32,8 +45,17 @@ export default function Portfolio() {
         <div className="max-w-4xl mx-auto text-center">
           <Card className="glass-card border-0">
             <CardContent className="p-12">
-              <h1 className="text-5xl font-bold text-white mb-4 text-balance">Kuan Wei Chen</h1>
-              <p className="text-xl text-gray-200 mb-8 text-pretty">Full-Stack Developer & AI/ML Engineer</p>
+              <div className="flex flex-col md:flex-row items-center justify-center gap-8 mb-8">
+                <img
+                  src="/placeholder-user.png"
+                  alt="Kuan Wei Chen"
+                  className="w-32 h-32 rounded-full object-cover shadow-lg border-4 border-gray-700"
+                />
+                <div>
+                  <h1 className="text-5xl font-bold text-white mb-4 text-balance">Kuan Wei Chen</h1>
+                  <p className="text-xl text-gray-200 mb-8 text-pretty">Full-Stack Developer & AI/ML Engineer</p>
+                </div>
+              </div>
               <p className="text-gray-300 mb-8 max-w-2xl mx-auto text-pretty">
                 Specialized in building scalable applications with Angular, React, Django, and .NET Core. Passionate
                 about AI/ML solutions and modern cloud architectures.
@@ -47,9 +69,13 @@ export default function Portfolio() {
                   <Phone className="w-4 h-4 mr-2" />
                   +886 981210682
                 </Button>
-                <Button variant="outline" className="border-gray-400 text-gray-200 hover:bg-gray-700/50 bg-gray-800/30">
+                <Button variant="outline" className="border-gray-400 text-gray-200 hover:bg-gray-700/50 bg-gray-800/30" onClick={() => window.open("https://www.linkedin.com/in/冠瑋-陳-755319223", "_blank")}>
                   <Linkedin className="w-4 h-4 mr-2" />
                   LinkedIn
+                </Button>
+                <Button variant="outline" className="border-gray-400 text-gray-200 hover:bg-gray-700/50 bg-gray-800/30" onClick={() => window.open("https://github.com/TerrifyGary", "_blank")}>
+                  <Github className="w-4 h-4 mr-2" />
+                  GitHub
                 </Button>
               </div>
             </CardContent>
@@ -221,10 +247,24 @@ export default function Portfolio() {
                   <Badge className="bg-primary text-primary-foreground">Oracle DB</Badge>
                   <Badge className="bg-primary text-primary-foreground">Azure DevOps</Badge>
                 </div>
-                <Button variant="outline" className="border-gray-400 text-gray-200 hover:bg-gray-700/50 bg-gray-800/30">
+                <Button
+                  variant="outline"
+                  className="border-gray-400 text-gray-200 hover:bg-gray-700/50 bg-gray-800/30"
+                  onClick={() => toggleDetails("ibm-fubon")}
+                >
                   <ExternalLink className="w-4 h-4 mr-2" />
-                  View Details
+                  {showDetails["ibm-fubon"] ? "Hide Details" : "View Details"}
                 </Button>
+                {showDetails["ibm-fubon"] && (
+                  <div className="mt-4 text-gray-300">
+                    <h4 className="font-semibold text-white mb-2">Key Features:</h4>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>Developed and maintained critical modules for account management, transactions, and customer service.</li>
+                      <li>Integrated with various internal and external APIs for real-time data processing.</li>
+                      <li>Ensured high performance and security standards in all development phases.</li>
+                    </ul>
+                  </div>
+                )}
               </CardContent>
             </Card>
 
@@ -244,10 +284,24 @@ export default function Portfolio() {
                   <Badge className="bg-primary text-primary-foreground">Python</Badge>
                   <Badge className="bg-primary text-primary-foreground">Oracle DB</Badge>
                 </div>
-                <Button variant="outline" className="border-gray-400 text-gray-200 hover:bg-gray-700/50 bg-gray-800/30">
+                <Button
+                  variant="outline"
+                  className="border-gray-400 text-gray-200 hover:bg-gray-700/50 bg-gray-800/30"
+                  onClick={() => toggleDetails("ai-procurement")}
+                >
                   <ExternalLink className="w-4 h-4 mr-2" />
-                  View Details
+                  {showDetails["ai-procurement"] ? "Hide Details" : "View Details"}
                 </Button>
+                {showDetails["ai-procurement"] && (
+                  <div className="mt-4 text-gray-300">
+                    <h4 className="font-semibold text-white mb-2">Key Features:</h4>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>Designed and implemented data pipelines for automated data collection and processing.</li>
+                      <li>Developed custom Python scripts for advanced data visualization and reporting.</li>
+                      <li>Improved decision-making efficiency by providing real-time insights into procurement trends.</li>
+                    </ul>
+                  </div>
+                )}
               </CardContent>
             </Card>
 
@@ -267,10 +321,24 @@ export default function Portfolio() {
                   <Badge className="bg-primary text-primary-foreground">Kafka</Badge>
                   <Badge className="bg-primary text-primary-foreground">Red Hat Podman</Badge>
                 </div>
-                <Button variant="outline" className="border-gray-400 text-gray-200 hover:bg-gray-700/50 bg-gray-800/30">
+                <Button
+                  variant="outline"
+                  className="border-gray-400 text-gray-200 hover:bg-gray-700/50 bg-gray-800/30"
+                  onClick={() => toggleDetails("as400-modernization")}
+                >
                   <ExternalLink className="w-4 h-4 mr-2" />
-                  View Details
+                  {showDetails["as400-modernization"] ? "Hide Details" : "View Details"}
                 </Button>
+                {showDetails["as400-modernization"] && (
+                  <div className="mt-4 text-gray-300">
+                    <h4 className="font-semibold text-white mb-2">Key Features:</h4>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>Migrated critical business logic from legacy systems to modern Java services.</li>
+                      <li>Developed a new Vue.js frontend for improved user experience and accessibility.</li>
+                      <li>Implemented Kafka for efficient data streaming and real-time updates.</li>
+                    </ul>
+                  </div>
+                )}
               </CardContent>
             </Card>
 
@@ -290,10 +358,24 @@ export default function Portfolio() {
                   <Badge className="bg-primary text-primary-foreground">NLP</Badge>
                   <Badge className="bg-primary text-primary-foreground">Deep Learning</Badge>
                 </div>
-                <Button variant="outline" className="border-gray-400 text-gray-200 hover:bg-gray-700/50 bg-gray-800/30">
+                <Button
+                  variant="outline"
+                  className="border-gray-400 text-gray-200 hover:bg-gray-700/50 bg-gray-800/30"
+                  onClick={() => toggleDetails("double-bert")}
+                >
                   <ExternalLink className="w-4 h-4 mr-2" />
-                  View Research
+                  {showDetails["double-bert"] ? "Hide Details" : "View Research"}
                 </Button>
+                {showDetails["double-bert"] && (
+                  <div className="mt-4 text-gray-300">
+                    <h4 className="font-semibold text-white mb-2">Key Contributions:</h4>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>Developed a novel deep learning architecture combining Double BERT and Decomposed Bilinear Pooling.</li>
+                      <li>Achieved state-of-the-art results in predicting article popularity on a complex social media platform.</li>
+                      <li>Published research findings in a peer-reviewed conference.</li>
+                    </ul>
+                  </div>
+                )}
               </CardContent>
             </Card>
           </div>
@@ -436,11 +518,11 @@ export default function Portfolio() {
                   <Mail className="w-4 h-4 mr-2" />
                   Email Me
                 </Button>
-                <Button variant="outline" className="border-gray-400 text-gray-200 hover:bg-gray-700/50 bg-gray-800/30">
+                <Button variant="outline" className="border-gray-400 text-gray-200 hover:bg-gray-700/50 bg-gray-800/30" onClick={() => window.open("https://www.linkedin.com/in/冠瑋-陳-755319223", "_blank")}>
                   <Linkedin className="w-4 h-4 mr-2" />
                   LinkedIn
                 </Button>
-                <Button variant="outline" className="border-gray-400 text-gray-200 hover:bg-gray-700/50 bg-gray-800/30">
+                <Button variant="outline" className="border-gray-400 text-gray-200 hover:bg-gray-700/50 bg-gray-800/30" onClick={() => window.open("https://github.com/TerrifyGary", "_blank")}>
                   <Github className="w-4 h-4 mr-2" />
                   GitHub
                 </Button>
