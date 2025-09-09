@@ -32,7 +32,7 @@ export default function GalleryPage() {
           <div className="glass-card border-0 p-6 rounded-lg shadow-lg hover:scale-105 transition-transform duration-300">
             <h3 className="text-2xl font-semibold mb-4">DeerDiary</h3>
             <p className="text-gray-300 mb-4">A personal diary application built with Next.js.</p>
-            <a href="https://terrifygary.github.io" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+            <a href="https://terrifygary.github.io/DeerDiary.github.io/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
               View DeerDiary
             </a>
           </div>
