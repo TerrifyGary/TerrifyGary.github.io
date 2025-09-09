@@ -36,6 +36,9 @@ export default function Portfolio() {
             <a href="#contact" className="text-white/90 hover:text-white transition-colors">
               Contact
             </a>
+            <a href="/gallery" className="text-white/90 hover:text-white transition-colors">
+              Gallery
+            </a>
           </div>
         </div>
       </nav>
